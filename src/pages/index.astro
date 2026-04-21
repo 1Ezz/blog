@@ -1,16 +1,324 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const latestPosts = posts.slice(0, 3);
 ---
 
-<BaseLayout title="首页" description="个人博客 - 记录成长与内心想法">
-  <section>
-    <h1>欢迎来到我的博客</h1>
-    <p>这里是 ez 的个人博客，记录成长与内心想法。</p>
-    <p><a href="/blog">阅读博客文章 &rarr;</a></p>
+<BaseLayout title="首页" description="ez 的个人博客 - 记录成长与内心想法">
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <span class="hero-line"></span>
+      <span class="hero-label">AI应用开发 / 自媒体</span>
+    </div>
+    <h1 class="hero-title">用代码构建<br />用文字沉淀</h1>
+    <p class="hero-subtitle">
+      我是 ez，一个在代码与内容之间游走的创作者。这里记录技术实践、思考碎片，以及一切值得留下的东西。
+    </p>
+    <div class="hero-cta">
+      <a href="/blog" class="btn-primary">
+        <span>开始阅读</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="/about" class="btn-secondary">了解更多</a>
+    </div>
   </section>
 
-  <section style="margin-top: 3rem;">
-    <h2>最新文章</h2>
-    <p>暂无文章，<a href="/blog">查看全部</a>。</p>
-  </section>
+  {latestPosts.length > 0 && (
+    <section class="latest-posts">
+      <div class="section-header">
+        <h2>最新文章</h2>
+        <a href="/blog" class="see-all">查看全部</a>
+      </div>
+      <div class="posts-grid">
+        {latestPosts.map((post, index) => (
+          <a href={`/blog/${post.id}/`} class="post-card" style={`--delay: ${index * 0.1}s`}>
+            <div class="post-card-inner">
+              <div class="post-meta">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </time>
+                {post.data.tags && (
+                  <span class="post-tags">{post.data.tags[0]}</span>
+                )}
+              </div>
+              <h3 class="post-title">{post.data.title}</h3>
+              <p class="post-desc">{post.data.description}</p>
+              <span class="post-arrow">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12h14M12 5l7 7-7 7"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {latestPosts.length === 0 && (
+    <section class="empty-state">
+      <div class="empty-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 19l7-7 3 3-7 7-3-3z"/>
+          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/>
+          <path d="M2 2l7.586 7.586"/>
+          <circle cx="11" cy="11" r="2"/>
+        </svg>
+      </div>
+      <p>暂无文章，<a href="/blog">去看看有什么</a>。</p>
+    </section>
+  )}
 </BaseLayout>
+
+<style>
+  .hero {
+    padding: 4rem 0 6rem;
+    position: relative;
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .hero-line {
+    width: 40px;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  .hero-label {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-title {
+    font-size: clamp(2.8rem, 8vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease-out 0.1s both;
+  }
+
+  .hero-subtitle {
+    max-width: 520px;
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent-hover);
+    transform: translateY(-2px);
+    color: var(--color-bg);
+  }
+
+  .btn-primary svg {
+    transition: transform 0.3s ease;
+  }
+
+  .btn-primary:hover svg {
+    transform: translateX(4px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.875rem 1.75rem;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 4px;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-text-muted);
+    background: var(--color-bg-elevated);
+    color: var(--color-text);
+  }
+
+  /* Latest Posts */
+  .latest-posts {
+    padding: 4rem 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 2rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .see-all {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: color 0.2s ease;
+  }
+
+  .see-all:hover {
+    color: var(--color-accent);
+  }
+
+  .posts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--color-border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .post-card {
+    display: block;
+    background: var(--color-bg);
+    transition: background 0.3s ease;
+    animation: fadeInUp 0.6s ease-out calc(var(--delay) + 0.4s) both;
+  }
+
+  .post-card:hover {
+    background: var(--color-bg-elevated);
+  }
+
+  .post-card-inner {
+    padding: 1.75rem 2rem;
+    position: relative;
+  }
+
+  .post-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .post-tags {
+    padding: 0.2rem 0.6rem;
+    background: var(--color-bg-elevated);
+    border-radius: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+  }
+
+  .post-title {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    transition: color 0.2s ease;
+  }
+
+  .post-card:hover .post-title {
+    color: var(--color-accent);
+  }
+
+  .post-desc {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .post-arrow {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .post-card:hover .post-arrow {
+    opacity: 1;
+    transform: translateY(-50%) translateX(4px);
+  }
+
+  /* Empty State */
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .empty-icon {
+    color: var(--color-text-muted);
+    margin-bottom: 1.5rem;
+    opacity: 0.5;
+  }
+
+  .empty-state p {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding: 2rem 0 4rem;
+    }
+
+    .hero-title {
+      font-size: 2.2rem;
+    }
+
+    .hero-cta {
+      flex-direction: column;
+    }
+
+    .btn-primary, .btn-secondary {
+      justify-content: center;
+    }
+
+    .post-card-inner {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .post-arrow {
+      display: none;
+    }
+  }
+</style>

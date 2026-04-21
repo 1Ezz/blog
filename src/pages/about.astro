@@ -2,8 +2,193 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="关于" description="关于我">
-  <h1>关于</h1>
-  <p>我是 ez，一个 AI 应用开发工程师，也是自媒体从业者。</p>
-  <p>这个博客用于记录个人成长与内心想法。</p>
+<BaseLayout title="关于" description="关于 ez">
+  <article class="about">
+    <header class="about-header">
+      <div class="header-eyebrow">
+        <span class="line"></span>
+        <span>About</span>
+      </div>
+      <h1>关于我</h1>
+    </header>
+
+    <div class="about-content">
+      <section class="intro-section">
+        <div class="intro-text">
+          <p class="intro-lead">我是 ez，一个在代码与内容之间游走的创作者。</p>
+          <p>
+            AI 应用开发工程师，后端与前端工程师，也是自媒体从业者。
+            白天写代码，晚上做内容相信技术与创意可以相互赋能。
+          </p>
+          <p>
+            这个博客是：我对世界的观察、技术的沉淀、以及一切值得记录的思考。
+          </p>
+        </div>
+      </section>
+
+      <section class="info-section">
+        <div class="info-grid">
+          <div class="info-item">
+            <h3>职业</h3>
+            <p>AI 应用开发工程师</p>
+          </div>
+          <div class="info-item">
+            <h3>擅长</h3>
+            <p>后端 / 前端 / 自媒体</p>
+          </div>
+          <div class="info-item">
+            <h3>坐标</h3>
+            <p>中国</p>
+          </div>
+          <div class="info-item">
+            <h3>状态</h3>
+            <p>记录中</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="philosophy-section">
+        <div class="philosophy-block">
+          <h2>我的信念</h2>
+          <blockquote>
+            <p>所有决策必须回到问题本质，而不是沿用既有惯例。</p>
+          </blockquote>
+          <p>
+            不做表面优化，不迎合预设结论。方案有问题就指出来；
+            有更优解，直接给出替代方案。
+          </p>
+        </div>
+      </section>
+    </div>
+  </article>
 </BaseLayout>
+
+<style>
+  .about {
+    animation: fadeIn 0.6s ease-out;
+  }
+
+  .about-header {
+    padding: 2rem 0 3rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 3rem;
+  }
+
+  .header-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .header-eyebrow .line {
+    width: 24px;
+    height: 1px;
+    background: var(--color-accent);
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 6vw, 3.5rem);
+    font-weight: 700;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+  }
+
+  .about-content {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+  }
+
+  .intro-section {
+    margin-bottom: 3rem;
+  }
+
+  .intro-lead {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-text p {
+    color: var(--color-text-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+  }
+
+  .info-section {
+    margin-bottom: 3rem;
+    padding: 2rem 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .info-item h3 {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .info-item p {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .philosophy-section {
+    margin-bottom: 2rem;
+  }
+
+  .philosophy-block h2 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .philosophy-block blockquote {
+    margin: 0 0 1.5rem;
+    padding: 1.5rem 2rem;
+    border-left: 3px solid var(--color-accent);
+    background: var(--color-bg-elevated);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .philosophy-block blockquote p {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 0;
+    color: var(--color-text);
+  }
+
+  .philosophy-block p {
+    color: var(--color-text-muted);
+    line-height: 1.8;
+  }
+
+  @media (max-width: 640px) {
+    .info-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .intro-lead {
+      font-size: 1.25rem;
+    }
+  }
+</style>
