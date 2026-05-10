@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout title="母亲节快乐 ❤️" description="献给世界上最伟大的人——母亲">
   <!-- 背景音乐 -->
-  <audio id="bgm" src="/music/郭静-下一个天亮.mp3" loop preload="auto"></audio>
+  <audio id="bgm" src="/music/郭静-下一个天亮.mp3" loop autoplay></audio>
   <button id="music-toggle" class="music-toggle paused" title="播放音乐" aria-label="播放音乐">
     <span class="music-icon">🎵</span>
   </button>
@@ -583,35 +583,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   const bgm = document.getElementById('bgm') as HTMLAudioElement;
   const btn = document.getElementById('music-toggle') as HTMLButtonElement;
 
-  btn.addEventListener('click', () => {
+  const setPlaying = () => {
+    btn.classList.replace('paused', 'playing');
+    btn.title = '暂停音乐';
+    btn.setAttribute('aria-label', '暂停音乐');
+  };
+  const setPaused = () => {
+    btn.classList.replace('playing', 'paused');
+    btn.title = '播放音乐';
+    btn.setAttribute('aria-label', '播放音乐');
+  };
+
+  const tryPlay = () => {
     if (bgm.paused) {
-      bgm.play().then(() => {
-        btn.classList.replace('paused', 'playing');
-        btn.title = '暂停音乐';
-        btn.setAttribute('aria-label', '暂停音乐');
-      }).catch(() => {
-        // 浏览器自动播放限制，静默处理
-      });
+      bgm.play().then(setPlaying).catch(() => {});
+    }
+  };
+
+  // 页面加载立即尝试（部分浏览器允许无声自动播放）
+  tryPlay();
+
+  // 任何用户交互时尝试播放
+  const events = ['click', 'scroll', 'touchstart', 'keydown'];
+  const onInteract = () => {
+    tryPlay();
+    events.forEach(e => document.removeEventListener(e, onInteract));
+  };
+  events.forEach(e => document.addEventListener(e, onInteract, { once: true }));
+
+  // 按钮控制
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (bgm.paused) {
+      bgm.play().then(setPlaying).catch(() => {});
     } else {
       bgm.pause();
-      btn.classList.replace('playing', 'paused');
-      btn.title = '播放音乐';
-      btn.setAttribute('aria-label', '播放音乐');
+      setPaused();
     }
   });
-
-  // 首次用户交互时尝试自动播放
-  const tryAutoplay = () => {
-    if (bgm.paused) {
-      bgm.play().then(() => {
-        btn.classList.replace('paused', 'playing');
-        btn.title = '暂停音乐';
-        btn.setAttribute('aria-label', '暂停音乐');
-      }).catch(() => {});
-    }
-    document.removeEventListener('click', tryAutoplay);
-    document.removeEventListener('scroll', tryAutoplay);
-  };
-  document.addEventListener('click', tryAutoplay, { once: true });
-  document.addEventListener('scroll', tryAutoplay, { once: true });
 </script>
