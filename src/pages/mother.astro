@@ -1,0 +1,516 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="母亲节快乐 ❤️" description="献给世界上最伟大的人——母亲">
+  <div class="mother-page">
+    <!-- 花瓣飘落 -->
+    <div class="petals" aria-hidden="true">
+      <span class="petal p1">🌸</span>
+      <span class="petal p2">🌷</span>
+      <span class="petal p3">💐</span>
+      <span class="petal p4">🌺</span>
+      <span class="petal p5">🌸</span>
+      <span class="petal p6">🌷</span>
+      <span class="petal p7">💮</span>
+      <span class="petal p8">🌼</span>
+      <span class="petal p9">🌸</span>
+      <span class="petal p10">🌺</span>
+    </div>
+
+    <!-- 顶部装饰波纹 -->
+    <div class="top-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 60C240 20 480 100 720 60C960 20 1200 100 1440 60V0H0V60Z" fill="rgba(232,160,180,0.12)"/>
+        <path d="M0 80C240 40 480 120 720 80C960 40 1200 120 1440 80V0H0V80Z" fill="rgba(232,160,180,0.08)"/>
+      </svg>
+    </div>
+
+    <!-- 主视觉区 -->
+    <section class="hero-mother">
+      <div class="hero-badge">
+        <span class="badge-icon">🌷</span>
+        <span>2026 年 5 月 10 日 · 母亲节</span>
+      </div>
+      <h1 class="hero-heading">
+        献给世界上<br />
+        <span class="highlight">最伟大的人</span>
+      </h1>
+      <p class="hero-desc">
+        她用一生诠释了什么是无私的爱。<br />
+        今天，我想把所有的温柔都献给她。
+      </p>
+    </section>
+
+    <!-- 祝福卡片 -->
+    <section class="message-section">
+      <div class="card main-card">
+        <div class="card-inner">
+          <div class="card-icon">💝</div>
+          <h2>妈妈，母亲节快乐</h2>
+          <p>
+            感谢您把最好的年华给了我，<br />
+            感谢您在我跌倒时扶我起来，<br />
+            感谢您教会我善良与坚强。
+          </p>
+          <p>
+            您的笑容是我世界里最温暖的光。<br />
+            愿岁月温柔待您，<br />
+            愿您永远健康、快乐、美丽。
+          </p>
+          <p class="card-signature">
+            永远爱您的孩子：金恩泽 ❤️
+          </p>
+          <div class="card-divider"></div>
+        </div>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card small-card" style="--card-delay: 0.1s">
+          <div class="card-inner">
+            <span class="small-card-icon">🌷</span>
+            <h3>感恩</h3>
+            <p>感谢妈妈无条件的爱与付出，是您让我成为今天的自己。</p>
+          </div>
+        </div>
+        <div class="card small-card" style="--card-delay: 0.2s">
+          <div class="card-inner">
+            <span class="small-card-icon">💪</span>
+            <h3>力量</h3>
+            <p>您是我人生中最坚强的后盾，给我面对一切的勇气。</p>
+          </div>
+        </div>
+        <div class="card small-card" style="--card-delay: 0.3s">
+          <div class="card-inner">
+            <span class="small-card-icon">✨</span>
+            <h3>祝福</h3>
+            <p>愿时光慢一些，愿您的每一天都充满欢笑与温暖。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 引用区 -->
+    <section class="quote-section">
+      <blockquote>
+        <p>"母亲，是第一个爱你的人，也是第一个你爱的人。"</p>
+      </blockquote>
+    </section>
+
+    <!-- 底部提示 -->
+    <section class="cta-section">
+      <p class="cta-text">今天，别忘了给妈妈打个电话，说一声</p>
+      <p class="cta-big">"妈妈，我爱你 ❤️"</p>
+    </section>
+  </div>
+</BaseLayout>
+
+
+<style>
+  /* ===== 浅色主题全局覆盖 ===== */
+  :global(:root) {
+    --color-bg: #fef9f5;
+    --color-bg-elevated: #ffffff;
+    --color-text: #3d2e2a;
+    --color-text-muted: #8c7a72;
+    --color-border: #f0e4dc;
+    --mother-pink: #d4788f;
+    --mother-rose: #c06078;
+    --mother-gold: #c8966e;
+    --mother-blush: #fce4ec;
+  }
+
+  :global(html) {
+    background: #fef9f5;
+    color: #3d2e2a;
+  }
+
+  :global(body) {
+    background: #fef9f5;
+    color: #3d2e2a;
+  }
+
+  :global(.noise-overlay) {
+    opacity: 0.015;
+  }
+
+  :global(.grain-overlay) {
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(212, 120, 143, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 100%, rgba(200, 150, 110, 0.05) 0%, transparent 50%);
+  }
+
+  :global(header) {
+    background: linear-gradient(to bottom, #fef9f5 60%, transparent);
+  }
+
+  :global(nav a) {
+    color: #8c7a72;
+  }
+
+  :global(nav a:hover) {
+    color: #3d2e2a;
+  }
+
+  :global(.header-line) {
+    background: linear-gradient(to right, #f0e4dc, transparent 50%);
+  }
+
+  :global(footer) {
+    border-color: #f0e4dc;
+  }
+
+  :global(footer p) {
+    color: #8c7a72;
+  }
+
+  :global(.logo) {
+    color: #3d2e2a;
+  }
+
+  :global(main p) {
+    color: #3d2e2a;
+  }
+
+  /* ===== 顶部装饰波纹 ===== */
+  .top-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .top-wave svg {
+    width: 100%;
+    height: auto;
+  }
+
+  /* ===== 花瓣飘落动画 ===== */
+  .petals {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .petal {
+    position: absolute;
+    top: -60px;
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: petalFall linear infinite;
+  }
+
+  .p1  { left: 5%;  animation-duration: 12s; animation-delay: 0s;   font-size: 1.3rem; }
+  .p2  { left: 15%; animation-duration: 14s; animation-delay: 1.5s; font-size: 1.6rem; }
+  .p3  { left: 25%; animation-duration: 11s; animation-delay: 3s;   font-size: 1.1rem; }
+  .p4  { left: 35%; animation-duration: 15s; animation-delay: 0.8s; font-size: 1.8rem; }
+  .p5  { left: 45%; animation-duration: 13s; animation-delay: 2.2s; font-size: 1.4rem; }
+  .p6  { left: 55%; animation-duration: 16s; animation-delay: 4s;   font-size: 1.2rem; }
+  .p7  { left: 65%; animation-duration: 10s; animation-delay: 1s;   font-size: 1.5rem; }
+  .p8  { left: 75%; animation-duration: 14s; animation-delay: 2.8s; font-size: 1.7rem; }
+  .p9  { left: 85%; animation-duration: 12s; animation-delay: 3.5s; font-size: 1.3rem; }
+  .p10 { left: 92%; animation-duration: 15s; animation-delay: 0.5s; font-size: 1.6rem; }
+
+  @keyframes petalFall {
+    0% {
+      opacity: 0;
+      transform: translateY(0) rotate(0deg) scale(0.6);
+    }
+    5% {
+      opacity: 0.6;
+    }
+    50% {
+      opacity: 0.4;
+      transform: translateY(50vh) rotate(180deg) scale(1);
+    }
+    90% {
+      opacity: 0.2;
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(100vh) rotate(360deg) scale(0.4);
+    }
+  }
+
+  /* ===== Hero ===== */
+  .hero-mother {
+    text-align: center;
+    padding: 4rem 0 5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.2rem;
+    background: rgba(212, 120, 143, 0.1);
+    border: 1px solid rgba(212, 120, 143, 0.2);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--mother-rose);
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.8s ease-out;
+  }
+
+  .badge-icon {
+    font-size: 1rem;
+  }
+
+  .hero-heading {
+    font-family: var(--font-display);
+    font-size: clamp(2.6rem, 8vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease-out 0.15s both;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+  }
+
+  .highlight {
+    background: linear-gradient(135deg, var(--mother-pink), var(--mother-rose));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--color-text-muted);
+    line-height: 2;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+  }
+
+  /* ===== 卡片 ===== */
+  .message-section {
+    position: relative;
+    z-index: 2;
+    padding: 1rem 0 4rem;
+  }
+
+  .card {
+    background: #fffdfb;
+    border: 1px solid #f0e4dc;
+    border-radius: 16px;
+    transition: all 0.4s ease;
+    box-shadow: 0 2px 16px rgba(180, 140, 120, 0.06);
+  }
+
+  .card:hover {
+    border-color: rgba(212, 120, 143, 0.25);
+    box-shadow: 0 8px 40px rgba(212, 120, 143, 0.1);
+    transform: translateY(-2px);
+  }
+
+  .card-inner {
+    padding: 2.5rem 2rem;
+  }
+
+  .main-card {
+    margin-bottom: 1.5rem;
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out 0.45s both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .main-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #f8c8d4, var(--mother-pink), var(--mother-gold));
+  }
+
+  .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: pulseIcon 3s ease-in-out infinite;
+  }
+
+  .main-card h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    margin: 0 0 1.5rem;
+    background: linear-gradient(135deg, var(--mother-rose), var(--mother-gold));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .main-card h2::before {
+    display: none;
+  }
+
+  .main-card p {
+    color: var(--color-text-muted);
+    line-height: 2;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .card-signature {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    color: var(--mother-rose);
+    margin-top: 1.5rem;
+    font-weight: 600;
+  }
+
+  .card-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--mother-pink), rgba(212, 120, 143, 0.1));
+    margin: 1.5rem auto 0;
+    border-radius: 1px;
+  }
+
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .small-card {
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out var(--card-delay) both;
+  }
+
+  .small-card .card-inner {
+    padding: 2rem 1.5rem;
+  }
+
+  .small-card-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.75rem;
+    transition: transform 0.3s ease;
+  }
+
+  .small-card:hover .small-card-icon {
+    transform: scale(1.15);
+  }
+
+  .small-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem;
+    color: var(--mother-rose);
+  }
+
+  .small-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin: 0;
+  }
+
+  /* ===== 引用 ===== */
+  .quote-section {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 0;
+    text-align: center;
+  }
+
+  .quote-section blockquote {
+    border: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .quote-section p {
+    font-family: var(--font-display);
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    font-style: italic;
+    color: var(--color-text-muted);
+    position: relative;
+    display: inline-block;
+    line-height: 1.8;
+  }
+
+  .quote-section p::before {
+    content: '"';
+    position: absolute;
+    left: -1.5rem;
+    top: -0.5rem;
+    font-size: 3rem;
+    color: var(--mother-pink);
+    opacity: 0.2;
+    font-family: var(--font-display);
+  }
+
+  .quote-section p::after {
+    content: '"';
+    position: absolute;
+    right: -1.5rem;
+    bottom: -2rem;
+    font-size: 3rem;
+    color: var(--mother-pink);
+    opacity: 0.2;
+    font-family: var(--font-display);
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 3rem 0 2rem;
+    border-top: 1px solid #f0e4dc;
+  }
+
+  .cta-text {
+    color: var(--color-text-muted);
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    animation: fadeInUp 0.6s ease-out both;
+  }
+
+  .cta-big {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--mother-pink), var(--mother-rose));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInUp 0.6s ease-out 0.15s both;
+  }
+
+  /* ===== 响应式 ===== */
+  @media (max-width: 768px) {
+    .cards-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .small-card .card-inner {
+      padding: 1.5rem;
+    }
+
+    .hero-mother {
+      padding: 2rem 0 3rem;
+    }
+
+    .quote-section {
+      padding: 2.5rem 0;
+    }
+  }
+
+  @keyframes pulseIcon {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+  }
+</style>
